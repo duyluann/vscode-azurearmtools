@@ -46,6 +46,7 @@
             "env": {
                 // =================================================================
                 "MOCHA_grep": "", // RegExp of tests to run (empty for all)
+                // NOTE: To change this for tests run on the command line, set env.MOCHA_grep in "gulpfile.ts"
                 // =================================================================
                 "MOCHA_invert": "0", // Invert the RegExp
                 "MOCHA_bail": "0", // Bail after first failure
