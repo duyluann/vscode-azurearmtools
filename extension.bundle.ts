@@ -20,6 +20,9 @@ import * as Json from "./src/language/json/JSON";
 import * as basic from "./src/language/json/Tokenizer";
 import * as Completion from './src/vscodeIntegration/Completion';
 
+export * from 'vscode-azureextensionui';
+export { activateInternal, deactivateInternal } from './src/extension'; // Export activate/deactivate for main.js
+
 export * from "./common";
 export * from "./src/documents/DeploymentDocument";
 export * from "./src/documents/parameters/DeploymentFileMapping";
@@ -61,7 +64,6 @@ export * from "./src/documents/templates/UserFunctionMetadata";
 export * from "./src/documents/templates/UserFunctionNamespaceDefinition";
 export * from "./src/documents/templates/UserFunctionParameterDefinition";
 export * from "./src/documents/templates/VariableDefinition";
-export { activateInternal, deactivateInternal } from './src/extension'; // Export activate/deactivate for main.js
 export { ext } from './src/extensionVariables';
 export * from './src/language/expressions/AzureRMAssets';
 export * from "./src/language/expressions/friendlyExpressions";

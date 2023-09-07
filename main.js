@@ -5,6 +5,8 @@
 
 "use strict";
 
+debugger;
+
 console.log(">>> main.js");
 
 // This is the extension entrypoint, which imports extension.js, the actual extension code.

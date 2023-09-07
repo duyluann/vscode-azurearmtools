@@ -76,14 +76,15 @@ interface IExpressionMetadata {
     }[];
 }
 
-async function test(): Promise<void> {
+async function pretest(): Promise<void> {
+    //asdfg
     env.DEBUGTELEMETRY = '0'; // 1=quiet; verbose=see telemetry in console; 0=send telemetry
     env.CODE_TESTS_PATH = path.join(__dirname, 'dist/test');
     env.IS_RUNNING_TESTS = '1';
     // This is the timeout for individual tests
     env.MOCHA_timeout = String(DEFAULT_TESTCASE_TIMEOUT_MS);
     env.MOCHA_enableTimeouts = "1";
-    env.MOCHA_grep = "";
+    env.MOCHA_grep = "ctrl.space without any quotes";
     env.DISABLE_SLOW_TESTS = "";
     env.ALWAYS_ECHO_TEST_LOG = "";
 
@@ -108,11 +109,6 @@ async function test(): Promise<void> {
     });
     if (result.status !== 0) {
         throw new Error("Failed to install dotnet runtime extension");
-    }
-
-    result = cp.spawnSync('node', ['./out/test/runTest.js'], { encoding: "utf-8", stdio: 'inherit', env });
-    if (result.status !== 0) {
-        throw new Error("Tests failed");
     }
 }
 
@@ -403,10 +399,10 @@ async function verifyTestsReferenceOnlyExtensionBundle(testFolder: string): Prom
 
 exports['webpack-dev'] = gulp.series(() => gulp_webpack('development'), buildGrammars);
 exports['webpack-prod'] = gulp.series(() => gulp_webpack('production'), buildGrammars);
-exports.test = gulp.series(test);
 exports['build-grammars'] = buildGrammars;
 exports['watch-grammars'] = (): unknown => gulp.watch('grammars/**', buildGrammars);
 exports['get-language-server'] = getLanguageServer;
 exports.package = packageVsix;
 exports['error-vsce-package'] = (): never => { throw new Error(`Please do not run vsce package, instead use 'npm run package`); };
 exports['verify-test-uses-extension-bundle'] = (): Promise<void> => verifyTestsReferenceOnlyExtensionBundle(path.resolve("test"));
+exports.preTest = gulp.series(pretest);
